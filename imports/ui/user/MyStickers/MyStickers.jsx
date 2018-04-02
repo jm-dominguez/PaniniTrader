@@ -53,6 +53,6 @@ export default withTracker(()=>{
     Meteor.subscribe("stickers");
     let userId = Meteor.userId();
     return {
-        stickers: Stickers.find({owner:userId}).fetch(),
+        stickers: Stickers.find({owner:userId}).fetch().reverse(),
     };
 }) (MyStickers);

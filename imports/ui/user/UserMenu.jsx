@@ -135,7 +135,7 @@ export default withRouter( withTracker(()=>{
     Meteor.subscribe("stadistics");
     let userId = Meteor.userId();
     return {
-        stickers: Stickers.find({owner:{$ne:userId}}).fetch(),
+        stickers: Stickers.find({owner:{$ne:userId}}).fetch().reverse(),
         stadistics : Stadistics.find().fetch()
     };
 }) (UserMenu));
