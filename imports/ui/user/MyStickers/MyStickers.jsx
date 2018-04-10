@@ -9,6 +9,38 @@ import { Stadistics } from "../../../api/collections/stadistics.js";
 
 export class MyStickers extends React.Component{
 
+    constructor(props){
+        super(props);
+        Session.set({limit: 12});
+        this.onScroll = this.onScroll.bind(this);
+    }
+
+    handleMore(){
+        let pLimit = Session.get("limit");
+        pLimit += 12;
+        Session.set({limit:pLimit});
+    }
+
+    onScroll(){
+        if (
+            (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 500) &&
+            this.props.stickers.length &&
+            !this.props.isLoading
+          ) {
+            this.handleMore();
+          }
+        
+
+    }
+
+    componentDidMount(){
+        window.addEventListener("scroll", this.onScroll, false);
+    }
+
+    componentWillUnmount(){
+        window.removeEventListener("scroll", this.onScroll, false);
+    }
+
     renderSticker(){
         console.log("props de myStickers");
         console.log(this.props.stickers);
@@ -52,7 +84,8 @@ export class MyStickers extends React.Component{
 export default withTracker(()=>{
     Meteor.subscribe("stickers");
     let userId = Meteor.userId();
+    let pLimit = Session.get("limit");
     return {
-        stickers: Stickers.find({owner:userId}).fetch().reverse(),
+        stickers: Stickers.find({owner:userId}, {limit: pLimit}).fetch().reverse(),
     };
 }) (MyStickers);
