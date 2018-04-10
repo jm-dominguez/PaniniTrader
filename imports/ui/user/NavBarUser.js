@@ -1,6 +1,7 @@
 import React from "react";
 import "./NavBarUser.css";
 import { withRouter, Link } from "react-router-dom";
+import {Session} from "meteor/session";
 
 class NavBarUser extends React.Component {
     constructor(props) {
@@ -28,12 +29,14 @@ class NavBarUser extends React.Component {
     handleLogOut(event){
         event.preventDefault();
         try{
+
             Meteor.logout((err)=>{
                 if(err){
                     throw err;
                 }
                 else{
                     this.props.history.push("/");
+                    
                 }
             });
         }

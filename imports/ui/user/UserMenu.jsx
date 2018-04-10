@@ -9,6 +9,8 @@ import {Stickers} from "../../api/collections/stickers.js";
 import{Sticker} from "./Components/Sticker.js";
 import {Names} from "../../api/collections/names.js";
 import { Stadistics } from "../../api/collections/stadistics.js";
+import {Tracker} from "meteor/tracker";
+import {Session} from "meteor/session";
 
 class UserMenu extends React.Component {
     constructor(props) {
@@ -19,9 +21,19 @@ class UserMenu extends React.Component {
             team:"",
             number:""
         }
+        
+        Session.set({limit: 5});
+        
         this.handleFilter = this.handleFilter.bind(this);
         this.handleReset = this.handleReset.bind(this);
+        this.handleMore = this.handleMore.bind(this);
         
+    }
+
+    handleMore(){
+        let pLimit = Session.get("limit");
+        pLimit += 5;
+        Session.set({limit:pLimit});
     }
 
     handleFilter(pname, pteam, pnumber){
@@ -94,7 +106,6 @@ class UserMenu extends React.Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div>
                 <NavBarUser />
@@ -121,6 +132,11 @@ class UserMenu extends React.Component {
                             }
                                 {this.renderSticker()}
                             </div>
+                            <div className="row">
+                                <div className="container-fluid">
+                                    <button type="button" onClick={this.handleMore}>See More...</button>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -131,11 +147,14 @@ class UserMenu extends React.Component {
 }
 
 export default withRouter( withTracker(()=>{
-    Meteor.subscribe("stickers");
-    Meteor.subscribe("stadistics");
-    let userId = Meteor.userId();
-    return {
-        stickers: Stickers.find({owner:{$ne:userId}}).fetch().reverse(),
-        stadistics : Stadistics.find().fetch()
-    };
+
+        Meteor.subscribe("stickers");
+        Meteor.subscribe("stadistics");
+        let userId = Meteor.userId();
+        let pLimit = Session.get("limit");
+        return {
+            stickers: Stickers.find({owner:{$ne:userId}}, {limit: pLimit}).fetch(),
+            stadistics : Stadistics.find().fetch()
+        };
+    
 }) (UserMenu));
