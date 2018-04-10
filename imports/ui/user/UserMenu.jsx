@@ -22,20 +22,40 @@ class UserMenu extends React.Component {
             number:""
         }
         
-        Session.set({limit: 5});
+        Session.set({limit: 9});
         
         this.handleFilter = this.handleFilter.bind(this);
         this.handleReset = this.handleReset.bind(this);
         this.handleMore = this.handleMore.bind(this);
+        this.onScroll = this.onScroll.bind(this);
         
     }
 
     handleMore(){
         let pLimit = Session.get("limit");
-        pLimit += 5;
+        pLimit += 9;
         Session.set({limit:pLimit});
     }
 
+    onScroll(){
+        if (
+            (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 500) &&
+            this.props.stickers.length &&
+            !this.props.isLoading
+          ) {
+            this.handleMore();
+          }
+        
+
+    }
+
+    componentDidMount(){
+        window.addEventListener("scroll", this.onScroll, false);
+    }
+
+    componentWillUnmount(){
+        window.removeEventListener("scroll", this.onScroll, false);
+    }
     handleFilter(pname, pteam, pnumber){
         this.setState({
             filter: "filter",
@@ -132,12 +152,6 @@ class UserMenu extends React.Component {
                             }
                                 {this.renderSticker()}
                             </div>
-                            <div className="row">
-                                <div className="container-fluid">
-                                    <button type="button" onClick={this.handleMore}>See More...</button>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
