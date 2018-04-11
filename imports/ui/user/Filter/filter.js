@@ -93,7 +93,7 @@ class Filter extends React.Component {
                 <div className="row">
                     <div className="col-md-1"></div>
                     <div className="col-md-10">
-                        <input type="submit" className="submit resetBtn" value="Reset filter" onClick={this.handleReset} />
+                    <input type="submit" className="btn btn-danger btn-sm" value="Reset filter" onClick={this.handleReset} />
                         <br />
                         <br />
                         <h5>Search by name:</h5>
@@ -130,7 +130,7 @@ class Filter extends React.Component {
 
                         </div>
                         <input type="number" ref="numberInput" name="number" placeholder="number" onChange={this.numberChange} />
-                        <input type="submit" className="submit" value="Search" onClick={this.handleSearch} />
+                        <input type="submit" className="btn btn-danger btn-sm" value="Search" onClick={this.handleSearch} />
                         <br />
                         <br />
 

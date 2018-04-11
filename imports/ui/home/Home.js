@@ -1,9 +1,9 @@
-import {Meteor} from "meteor/meteor";
+import { Meteor } from "meteor/meteor";
 import React from "react";
 import "./css/Home.css";
 import Login from "./login/login.js";
-import  SignUp  from "./signup/signup.js";
-import {withRouter} from "react-router-dom";
+import SignUp from "./signup/signup.js";
+import { withRouter } from "react-router-dom";
 
 class Home extends React.Component {
 
@@ -16,7 +16,7 @@ class Home extends React.Component {
         this.handleLoginButtonPress = this.handleLoginButtonPress.bind(this);
         this.handleSignUpButtonPress = this.handleSignUpButtonPress.bind(this);
     }
- 
+
 
     handleLoginButtonPress(e) {
         e.preventDefault();
@@ -66,8 +66,8 @@ class Home extends React.Component {
                                 <div className="container-fluid" id="form-container">
                                     <div className="row">
                                         <div className="btn-group" role="group" aria-label="button group">
-                                            <button id="signup" type="button" className="btn btn-primary btn-lg" onClick={this.handleSignUpButtonPress}> SignUp </button>
-                                            <button id="login" type="button" className="btn btn-primary btn-lg " onClick={this.handleLoginButtonPress}> Login </button>
+                                            <button id="signup" type="button" className="btn btn-dark btn-lg" onClick={this.handleSignUpButtonPress}> SignUp </button>
+                                            <button id="login" type="button" className="btn btn-dark btn-lg " onClick={this.handleLoginButtonPress}> Login </button>
                                         </div>
                                     </div>
                                     <br />

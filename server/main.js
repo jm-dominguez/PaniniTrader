@@ -4,6 +4,7 @@ import "../imports/api/collections/stickers.js";
 import "../imports/api/collections/names.js";
 import "../imports/api/collections/groups.js";
 import "../imports/api/collections/stadistics.js";
+import "../imports/api/collections/peopleGroups.js";
 
 
 Meteor.startup(() => {

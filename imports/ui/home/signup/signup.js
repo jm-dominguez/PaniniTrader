@@ -169,7 +169,7 @@ class SignUp extends React.Component {
                             </div>
                             <br />
                             <div className="row">
-                                <input type="submit" value="Sign Up" className="submit" onClick={this.handleSubmit} />
+                            <input type="submit" value="Sign Up" className="btn btn-danger btn-sm" onClick={this.handleSubmit} />
                             </div>
 
                         </label>

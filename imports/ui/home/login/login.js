@@ -26,27 +26,27 @@ class Login extends React.Component {
     }
     handleSubmit(e) {
         e.preventDefault();
-        if(this.state.mail === ""){
+        if (this.state.mail === "") {
             alert("You must enter a valid e-mail");
         }
-        else if(!this.state.mail.match(/.+@.+/)){
+        else if (!this.state.mail.match(/.+@.+/)) {
             alert("You must type a valid e-mail");
         }
-        else if(this.state.password === ""){
+        else if (this.state.password === "") {
             alert("You must enter a password");
         }
-        else{
-        
-                Meteor.loginWithPassword(this.state.mail, this.state.password, (err)=>{
-                    if(err){
-                        throw(err);
-                    }
-                    else{
-                        this.props.history.push("/menu");
-                    }
-                });
+        else {
+
+            Meteor.loginWithPassword(this.state.mail, this.state.password, (err) => {
+                if (err) {
+                    throw (err);
+                }
+                else {
+                    this.props.history.push("/menu");
+                }
+            });
         }
-            
+
     }
     render() {
         return (
@@ -73,7 +73,7 @@ class Login extends React.Component {
                             </div>
                             <br />
                             <div className="row">
-                                <input type="submit" value="Login" className="submit" onClick={this.handleSubmit} />
+                                <input type="submit" value="Login" className="btn btn-danger btn-sm" onClick={this.handleSubmit} />
                             </div>
 
                         </label>
