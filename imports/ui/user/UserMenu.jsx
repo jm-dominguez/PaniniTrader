@@ -11,6 +11,7 @@ import {Names} from "../../api/collections/names.js";
 import { Stadistics } from "../../api/collections/stadistics.js";
 import {Tracker} from "meteor/tracker";
 import {Session} from "meteor/session";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 
 class UserMenu extends React.Component {
     constructor(props) {
@@ -19,21 +20,40 @@ class UserMenu extends React.Component {
             filter: "noFilter",
             name:"",
             team:"",
-            number:""
+            number:"",
+            order: "",
+            dropdownOpen: false
         }
         
-        Session.set({limit: 9});
+        Session.set({order: undefined});
+        Session.set({limit: 15});
         
         this.handleFilter = this.handleFilter.bind(this);
         this.handleReset = this.handleReset.bind(this);
         this.handleMore = this.handleMore.bind(this);
         this.onScroll = this.onScroll.bind(this);
+        this.handleOrder = this.handleOrder.bind(this);
+        this.toggle = this.toggle.bind(this);
         
+    }
+
+    toggle() {
+        this.setState({
+          dropdownOpen: !this.state.dropdownOpen
+        });
+      }
+
+    handleOrder(e){
+        Session.set({order: e.currentTarget.textContent});
+        Session.set({limit: 15});
+        this.setState({
+            order: e.currentTarget.textContent
+        });
     }
 
     handleMore(){
         let pLimit = Session.get("limit");
-        pLimit += 9;
+        pLimit += 15;
         Session.set({limit:pLimit});
     }
 
@@ -138,19 +158,50 @@ class UserMenu extends React.Component {
                             <Filter onFilter={this.handleFilter} onReset={this.handleReset}/>
                         </div>
                         <div className="col-sm-8">
-                            <div className="row">
-                                <div className="col-sm-12">
-                                    <h2> Most Recent Publications! </h2>
+                            <div className="container-fluid">
+                                <div className="row">
+                                    <div className="col-sm-12">
+                                        <h2> Most Recent Publications! </h2>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="row">
-                            {
-                                console.log("props")
-                            }
-                            {
-                                console.log(this.props)
-                            }
-                                {this.renderSticker()}
+                                <div className="row">
+                                    <div className="row">
+                                        <h4>Sort by    </h4>
+                                    </div>
+                                    <div className="row">
+                                        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                            <DropdownToggle caret>
+                                                {this.state.order === "" ? "Order By": this.state.order}
+                                            </DropdownToggle>
+                                            <DropdownMenu>
+                                                <DropdownItem >
+                                                    <div onClick={this.handleOrder}>
+                                                        number
+                                                    </div>
+                                                </DropdownItem>
+                                                <DropdownItem>
+                                                    <div onClick={this.handleOrder}>
+                                                        name
+                                                    </div>
+                                                </DropdownItem>
+                                                <DropdownItem>
+                                                    <div onClick = {this.handleOrder}>
+                                                        country
+                                                    </div>
+                                                </DropdownItem>
+                                            </DropdownMenu>
+                                        </Dropdown>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                {
+                                    console.log("props")
+                                }
+                                {
+                                    console.log(this.props)
+                                }
+                                    {this.renderSticker()}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -166,8 +217,11 @@ export default withRouter( withTracker(()=>{
         Meteor.subscribe("stadistics");
         let userId = Meteor.userId();
         let pLimit = Session.get("limit");
+        let pOrder = Session.get("order");
+        let sortOrder = {};
+        sortOrder[pOrder] = 1;
         return {
-            stickers: Stickers.find({owner:{$ne:userId}}, {limit: pLimit}).fetch(),
+            stickers: Stickers.find({owner:{$ne:userId}},{sort: sortOrder, limit: pLimit}).fetch(),
             stadistics : Stadistics.find().fetch()
         };
     

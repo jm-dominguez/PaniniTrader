@@ -56,7 +56,7 @@ export class Sticker extends React.Component {
             console.log("q"+q);
             return (
                 <div>
-                    <p>{q} persons has repetead this Sticker!</p>
+                    <p>{q} </p>
                     <button type="button" onClick={this.handleContactClick} className="btn btn-success btn-sm btn-block">Contact</button>
                 </div>
             )
