@@ -26,7 +26,7 @@ class UserMenu extends React.Component {
         }
         
         Session.set({order: undefined});
-        Session.set({limit: 15});
+        Session.set({limit: 12});
         
         this.handleFilter = this.handleFilter.bind(this);
         this.handleReset = this.handleReset.bind(this);
@@ -45,7 +45,7 @@ class UserMenu extends React.Component {
 
     handleOrder(e){
         Session.set({order: e.currentTarget.textContent});
-        Session.set({limit: 15});
+        Session.set({limit: 12});
         this.setState({
             order: e.currentTarget.textContent
         });
@@ -54,12 +54,13 @@ class UserMenu extends React.Component {
     handleMore(){
         let pLimit = Session.get("limit");
         pLimit += 15;
+        console.log("pLimit" + pLimit );
         Session.set({limit:pLimit});
     }
 
     onScroll(){
         if (
-            (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 500) &&
+            (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 50) &&
             this.props.stickers.length &&
             !this.props.isLoading
           ) {
@@ -125,8 +126,6 @@ class UserMenu extends React.Component {
                 players.map((player)=>{
                     numbers.push(player.Num);
                 });
-
-                console.log(numbers);
 
                 let array = [];
                 this.props.stickers.map((sticker)=>{
@@ -194,12 +193,6 @@ class UserMenu extends React.Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                {
-                                    console.log("props")
-                                }
-                                {
-                                    console.log(this.props)
-                                }
                                     {this.renderSticker()}
                                 </div>
                             </div>

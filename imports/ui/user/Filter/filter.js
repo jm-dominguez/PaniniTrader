@@ -20,7 +20,6 @@ class Filter extends React.Component {
 
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleReset = this.handleReset.bind(this);
-        this.numberChange = this.numberChange.bind(this);
         this.handleTeamChange = this.handleTeamChange.bind(this);
         this.handleNumberChange = this.handleNumberChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
@@ -30,7 +29,6 @@ class Filter extends React.Component {
         this.setState({
             name: e.target.value
         });
-        ReactDOM.findDOMNode(this.refs.nameInput).value=e.target.value;
     }
 
     handleTeamChange(e) {
@@ -44,15 +42,6 @@ class Filter extends React.Component {
         this.setState({
             number: e.target.value
         });
-        ReactDOM.findDOMNode(this.refs.numberInput).value=e.target.value;
-    }
-
-    numberChange(e) {
-        e.preventDefault();
-        this.setState({
-            number: e.target.value
-        });
-        ReactDOM.findDOMNode(this.refs.numberInput).value=e.target.value;
     }
 
     handleSearch(){
@@ -78,10 +67,6 @@ class Filter extends React.Component {
             name:"",
             team: ""
         });
-
-        ReactDOM.findDOMNode(this.refs.numberInput).value="";
-        ReactDOM.findDOMNode(this.refs.nameInput).value="";
-
         this.props.onReset();
     }
 
@@ -100,14 +85,16 @@ class Filter extends React.Component {
                         <div className="formFilter">
                             <form>
                                 <label>
-                                    <select onChange={this.handleNameChange}>
-                                        {this.props.names.map((name) => (
-                                            <option className="dropdown-item" key={name.Num}>{name.Name}</option>
-                                        ))}
-                                    </select>
+                                    <input list="players" name="players" onChange={this.handleNameChange}/>
+                                    <datalist id="players">
+                                        {
+                                            this.props.names.map((name)=>(
+                                                <option key = {name.Name + name.Num} value={name.Name}/>
+                                            ))
+                                        }
+                                    </datalist>
                                 </label>
                             </form>
-                            <input type="text" ref="nameInput" name="text" placeholder="Name" onChange={this.handleNameChange} />
                         </div>
                     </div>
                 </div>
@@ -120,16 +107,16 @@ class Filter extends React.Component {
                         <div className="formFilter">
                             <form>
                                 <label>
-                                    <select onChange={this.handleNumberChange}>
-                                        {this.props.names.map((stickerInfo) => (
-                                            <option key={stickerInfo.Num}>{stickerInfo.Num}</option>
+                                    <input list="numbers" name="number" onChange = {this.handleNumberChange}/>
+                                    <datalist id="numbers">
+                                        {this.props.names.map((stickerInfo)=>(
+                                            <option key = {"number" + stickerInfo.Num} value= {stickerInfo.Num}/>
                                         ))}
-                                    </select>
+                                    </datalist> 
                                 </label>
                             </form>
 
                         </div>
-                        <input type="number" ref="numberInput" name="number" placeholder="number" onChange={this.numberChange} />
                         <input type="submit" className="btn btn-danger btn-sm" value="Search" onClick={this.handleSearch} />
                         <br />
                         <br />

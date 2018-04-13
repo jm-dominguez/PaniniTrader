@@ -14,12 +14,10 @@ export class Sticker extends React.Component {
 
     handleRemoveClick() {
         Meteor.call("names.findByNum", parseInt(this.props.number), (err, result) => {
-            console.log(result);
             let toRemove = String(result.Num);
 
             Meteor.call("stadistics.findByNum", toRemove, (err, result) => {
                 let quantityUpdate = parseInt(result.quantity) - 1;
-                console.log("final:" + quantityUpdate);
                 Meteor.call("stadistics.updatesInfo", result._id, quantityUpdate, toRemove);
 
             });
@@ -35,7 +33,6 @@ export class Sticker extends React.Component {
         let url = "https://api.whatsapp.com/send?phone=57";
         let number = this.props.number;
         let finalUrl = url + cel;
-        console.log(finalUrl);
         window.open(finalUrl, "_blank");
 
     }
@@ -47,13 +44,11 @@ export class Sticker extends React.Component {
         }
         else {
             let arreglo = this.props.stadistics;
-            console.log(this.props);
             let q = undefined;
             if (arreglo[this.props.number] !== undefined){
                 q =  arreglo[this.props.number].quantity;
             }
 
-            console.log("q"+q);
             return (
                 <div>
                     <p>{q} </p>
