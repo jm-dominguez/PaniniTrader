@@ -57,8 +57,9 @@ class Home extends React.Component {
                             </div>
                             <div className="col-md-5">
                                 <h4 id="slogan">Panini Trader helps you complete your Panini album easier!</h4>
+                                <br />
                                 <div id="img-container" className="container-fluid">
-                                    <img id="home-image" alt="Image of a stadium with people" src="http://minsvyaz.ru/uploaded/photos/fifa.jpg" />
+                                    <img id="home-image" alt="Image of a stadium with people" src="https://upload.wikimedia.org/wikipedia/commons/0/03/Fifa_World_Cup_Russia_2018_logo.png" />
                                     <p id="img-text"></p>
                                 </div>
                             </div>
