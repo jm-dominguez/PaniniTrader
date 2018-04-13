@@ -6,13 +6,13 @@
 .navbar-brand > a{
     padding: auto 0;
     margin: auto 0;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Gudea', sans-serif;
     color: white;
 }
 
 .navbar {
     background-color : black;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Pacifico', cursive;
     color: white;
 }
 
@@ -24,6 +24,10 @@
 
 .nav-link, #logout{
     cursor: pointer;
+}
+
+.nav-link{
+    font-family: 'Gudea', sans-serif;
 }
 
 

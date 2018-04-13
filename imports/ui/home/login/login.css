@@ -10,3 +10,11 @@
 .submit{
     cursor: pointer;
 }
+
+#login-title{
+    font-family: 'Pacifico', cursive;
+}
+
+.form-object{
+    font-family: 'Gudea', sans-serif;
+}

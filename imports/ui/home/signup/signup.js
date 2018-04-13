@@ -116,9 +116,9 @@ class SignUp extends React.Component {
         return (
             <div>
                 <div className="container-fluid" id="signup-container">
-                    <h2> Sign up </h2>
+                    <h2 id="signup-title"> Sign up </h2>
                     <form>
-                        <label>
+                        <label className="form-object">
                             <div className="row">
                                 <div className="col-sm-5">
                                     First Name:

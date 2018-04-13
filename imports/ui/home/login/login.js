@@ -52,9 +52,9 @@ class Login extends React.Component {
         return (
             <div>
                 <div className="container-fluid" id="login-container">
-                    <h2> Login </h2>
+                    <h2 id="login-title"> Login </h2>
                     <form>
-                        <label>
+                        <label className="form-object">
                             <div className="row">
                                 <div className="col-sm-5">
                                     E-Mail:
