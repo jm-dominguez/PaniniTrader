@@ -168,8 +168,8 @@ class SignUp extends React.Component {
                                 </div>
                             </div>
                             <br />
-                            <div className="row">
-                            <input type="submit" value="Sign Up" className="btn btn-danger btn-sm" onClick={this.handleSubmit} />
+                            <div className="row" id="signup-button-zone">
+                                <input type="submit" value="Sign Up" className="btn btn-danger btn-sm" onClick={this.handleSubmit} />
                             </div>
 
                         </label>

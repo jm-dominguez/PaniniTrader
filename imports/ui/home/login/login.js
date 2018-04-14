@@ -72,7 +72,7 @@ class Login extends React.Component {
                                 </div>
                             </div>
                             <br />
-                            <div className="row">
+                            <div className="row" id="login-button-zone">
                                 <input type="submit" value="Login" className="btn btn-danger btn-sm" onClick={this.handleSubmit} />
                             </div>
 

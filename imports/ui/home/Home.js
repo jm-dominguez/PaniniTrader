@@ -56,19 +56,24 @@ class Home extends React.Component {
                             <div className="col-md-1">
                             </div>
                             <div className="col-md-5">
-                                <h4 id="slogan">Panini Trader helps you complete your Panini album easier!</h4>
-                                <br />
-                                <div id="img-container" className="container-fluid">
-                                    <img id="home-image" alt="Image of a stadium with people" src="https://upload.wikimedia.org/wikipedia/commons/0/03/Fifa_World_Cup_Russia_2018_logo.png" />
-                                    <p id="img-text"></p>
+                                <div className="row">
+                                    <h4 id="slogan">Panini Trader helps you complete your Panini album easier!</h4>
+                                    <br />
+                                    <div id="img-container" className="container-fluid">
+                                        <img id="home-image" alt="Image of a stadium with people" src="https://upload.wikimedia.org/wikipedia/commons/0/03/Fifa_World_Cup_Russia_2018_logo.png" />
+                                        <p id="img-text"></p>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <img id="stickers-home-image" alt="Image of many stickers" src="/images/Portada.jpeg"/>
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="container-fluid" id="form-container">
                                     <div className="row">
                                         <div className="btn-group" role="group" aria-label="button group">
-                                            <button id="signup" type="button" className="btn btn-dark btn-lg" onClick={this.handleSignUpButtonPress}> SignUp </button>
-                                            <button id="login" type="button" className="btn btn-dark btn-lg " onClick={this.handleLoginButtonPress}> Login </button>
+                                            <button id="signup" type="button" className="btn btn-dark btn-lg"  onClick={this.handleSignUpButtonPress}> SignUp </button>
+                                            <button id="login" type="button" className="btn btn-dark btn-lg "  onClick={this.handleLoginButtonPress}> Login </button>
                                         </div>
                                     </div>
                                     <br />

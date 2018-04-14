@@ -1,7 +1,7 @@
 #login-container{
     border-style: solid;
     border-width: 4px;
-    border-color: cadetblue;
+    border-color: #3498DB;
     width: 100%;
     background-color: white;
     text-align: center;
@@ -13,8 +13,18 @@
 
 #login-title{
     font-family: 'Pacifico', cursive;
+    color: #2C3E50 !important;
 }
 
 .form-object{
     font-family: 'Gudea', sans-serif;
+}
+
+.btn-danger{
+    background-color: #E74C3C !important;
+}
+
+#login-button-zone{
+    justify-content: center;
+    text-align: center;
 }

@@ -44,11 +44,17 @@ class UserMenu extends React.Component {
       }
 
     handleOrder(e){
-        Session.set({order: e.currentTarget.textContent});
-        Session.set({limit: 12});
-        this.setState({
-            order: e.currentTarget.textContent
-        });
+        if(e.currentTarget.textContent !== "None"){
+            Session.set({order: e.currentTarget.textContent});
+            Session.set({limit: 12});
+        }
+        else{
+            Session.set({order: undefined});
+            this.setState({
+                order: ""
+            });
+        }
+    
     }
 
     handleMore(){
@@ -163,17 +169,14 @@ class UserMenu extends React.Component {
                             <div className="container-fluid">
                                 <div className="row">
                                     <div className="col-sm-12">
-                                        <h2> Most Recent Publications! </h2>
+                                        <h2>Recently added stickers! </h2>
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="row">
-                                        <h4>Sort by    </h4>
-                                    </div>
-                                    <div className="row">
+                                    <div className="col-sm-1">
                                         <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                                             <DropdownToggle caret>
-                                                {this.state.order === "" ? "Order By": this.state.order}
+                                                {this.state.order === "" ? "Sort By": this.state.order}
                                             </DropdownToggle>
                                             <DropdownMenu>
                                                 <DropdownItem >
@@ -189,6 +192,11 @@ class UserMenu extends React.Component {
                                                 <DropdownItem>
                                                     <div onClick = {this.handleOrder}>
                                                         country
+                                                    </div>
+                                                </DropdownItem>
+                                                <DropdownItem>
+                                                    <div onClick = {this.handleOrder}>
+                                                        None
                                                     </div>
                                                 </DropdownItem>
                                             </DropdownMenu>

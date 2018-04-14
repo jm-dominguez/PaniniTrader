@@ -5,3 +5,13 @@
 .filterSelection {
     background-color: #f7f7f7
 }
+
+h1{
+    font-family: 'Pacifico', cursive;
+}
+h2{
+  margin: 10px;  
+}
+.dropdown-toggle{
+    padding-left: 10px;
+}

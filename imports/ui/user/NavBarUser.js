@@ -61,8 +61,8 @@ class NavBarUser extends React.Component {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-                        <a className="navbar-brand" href="#">PaniniTrader</a>
-                        <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <a className="navbar-brand" href="#">PaniniTrader</a>                        
+                        <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                             <li className="nav-item">
                                 <a className="nav-link" onClick={this.handleStickersClick}>My Repeated Stickers</a>
                             </li>
@@ -72,10 +72,8 @@ class NavBarUser extends React.Component {
                             <li className="nav-item">
                                 <a className="nav-link" onClick={this.handleGroupClick}>Groups</a>
                             </li>
-                        </ul>
-                        <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                             <li>
-                            <button className="btn btn-danger my-2 my-sm-0" type="submit" onClick={this.handleLogOut}>Logout</button>
+                                <button className="btn btn-danger my-2 my-sm-0" id="logout-button" type="submit" onClick={this.handleLogOut}>Logout</button>
                             </li>
                         </ul>
                     </div>

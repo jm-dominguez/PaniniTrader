@@ -5,6 +5,7 @@ import { withTracker } from "meteor/react-meteor-data";
 import { Names } from "../../../api/collections/names.js";
 import { Groups } from "../../../api/collections/groups.js";
 import {withRouter} from "react-router-dom";
+import "./filter.css";
 
 
 class Filter extends React.Component {
@@ -73,7 +74,7 @@ class Filter extends React.Component {
     render() {
         return (
             <div className="filterSelection">
-                <h2 className="filterSelection">Filter your selection:</h2>
+                <h2 id="filter-title">Filter:</h2>
                 <br />
                 <div className="row">
                     <div className="col-md-1"></div>
@@ -81,7 +82,7 @@ class Filter extends React.Component {
                     <input type="submit" className="btn btn-danger btn-sm" value="Reset filter" onClick={this.handleReset} />
                         <br />
                         <br />
-                        <h5>Search by name:</h5>
+                        <h5>Name:</h5>
                         <div className="formFilter">
                             <form>
                                 <label>
@@ -102,8 +103,7 @@ class Filter extends React.Component {
                 <div className="row">
                     <div className="col-md-1"></div>
                     <div className="col-md-10">
-                        <h5>Search by number:</h5>
-
+                        <h5>Number:</h5>
                         <div className="formFilter">
                             <form>
                                 <label>

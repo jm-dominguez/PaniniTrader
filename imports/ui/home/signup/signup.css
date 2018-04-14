@@ -18,15 +18,13 @@ input[type=text], input[type=password], input[type=tel]{
 
 .submit{
     background-color: #1898F1;
-    width: 60%;
-    margin-left: 20%;
     color: white;
     cursor: pointer;
 }
 #signup-container{
     border-style: solid;
     border-width: 4px;
-    border-color: cadetblue;
+    border-color: #3498DB;
     width: 100%;
     background-color: white;
     text-align: center;
@@ -34,8 +32,18 @@ input[type=text], input[type=password], input[type=tel]{
 
 #signup-title{
     font-family: 'Pacifico', cursive;
+    color: #2C3E50 !important;
 }
 
 .form-object{
     font-family: 'Gudea', sans-serif;
+}
+
+input[type=submit]{
+    width: 20% !important;
+}
+
+#signup-button-zone{
+    justify-content: center;
+    text-align: center;
 }

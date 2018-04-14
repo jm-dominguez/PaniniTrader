@@ -11,7 +11,7 @@
 }
 
 .navbar {
-    background-color : black;
+    background-color :#2980B9;
     font-family: 'Pacifico', cursive;
     color: white;
 }
@@ -36,4 +36,8 @@
     margin-left: 80%;
     color: white;
     cursor: pointer;
+}
+
+#logout-button {
+    background-color: #E74C3C;
 }
