@@ -5,3 +5,10 @@
 .filterSelection {
     border-style: groove;
 }
+
+input{
+    margin: 8px 0;
+    box-sizing: border-box;
+    padding-left: 15px;
+    border-radius: 3px;
+}

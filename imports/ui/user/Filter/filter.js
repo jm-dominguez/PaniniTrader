@@ -79,14 +79,14 @@ class Filter extends React.Component {
                 <div className="row">
                     <div className="col-md-1"></div>
                     <div className="col-md-10">
-                    <input type="submit" className="btn btn-danger btn-sm" value="Reset filter" onClick={this.handleReset} />
+                    <input type="submit" className="btn btn-danger btn-sm" value="Reset" onClick={this.handleReset} />
                         <br />
                         <br />
                         <h5>Name:</h5>
                         <div className="formFilter">
                             <form>
                                 <label>
-                                    <input list="players" name="players" onChange={this.handleNameChange}/>
+                                    <input list="players" name="players" placeholder="e.g. Neymar" onChange={this.handleNameChange}/>
                                     <datalist id="players">
                                         {
                                             this.props.names.map((name)=>(
@@ -107,7 +107,7 @@ class Filter extends React.Component {
                         <div className="formFilter">
                             <form>
                                 <label>
-                                    <input list="numbers" name="number" onChange = {this.handleNumberChange}/>
+                                    <input list="numbers" name="number" placeholder="e.g. 153" onChange = {this.handleNumberChange}/>
                                     <datalist id="numbers">
                                         {this.props.names.map((stickerInfo)=>(
                                             <option key = {"number" + stickerInfo.Num} value= {stickerInfo.Num}/>

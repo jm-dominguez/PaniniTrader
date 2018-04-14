@@ -9,4 +9,22 @@ p{
     text-align: center;
     padding: auto 0;
     margin: auto 0;
+    color: #2C3E50;
+}
+
+
+#sticker-container{
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 5px;
+    width: 160px;
+    box-shadow: 2px 5px #ddd;
+    margin-top: 15px;
+
+}
+
+.WhatsAppLogo{
+    width: 25px;
+    height: 25px;
+    margin-left: 4px;
 }

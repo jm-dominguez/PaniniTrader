@@ -52,7 +52,10 @@ export class Sticker extends React.Component {
             return (
                 <div>
                     <p>{q} </p>
-                    <button type="button" onClick={this.handleContactClick} className="btn btn-success btn-sm btn-block">Contact</button>
+                    <button type="button" onClick={this.handleContactClick} className="btn btn-success btn-sm btn-block">
+                        Contact
+                        <img className="WhatsAppLogo" alt="whatsapp logo" src="/images/wapp.png"/>
+                    </button>
                 </div>
             )
         }
@@ -61,7 +64,7 @@ export class Sticker extends React.Component {
     render() {
         return (
             <div>
-                <div className="container">
+                <div className="container" id="sticker-container">
                     <div className="row">
                         <div className="col-sm-12">
                             <p> {this.props.country} </p>
