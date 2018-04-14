@@ -53,9 +53,12 @@ class UserMenu extends React.Component {
 
     handleMore(){
         let pLimit = Session.get("limit");
-        pLimit += 15;
-        console.log("pLimit" + pLimit );
-        Session.set({limit:pLimit});
+        if(!(this.props.stickers.length + 12 <= pLimit)){
+            pLimit += 15;
+            console.log("pLimit" + pLimit );
+            console.log(this.props.stickers);
+            Session.set({limit:pLimit});
+        }
     }
 
     onScroll(){
