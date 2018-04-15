@@ -5,6 +5,10 @@ img{
     margin-right: auto;
 }
 
+#image-row{
+    text-align: center;
+}
+
 p{
     text-align: center;
     padding: auto 0;

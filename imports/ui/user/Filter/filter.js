@@ -23,7 +23,8 @@ class Filter extends React.Component {
         this.handleReset = this.handleReset.bind(this);
         this.handleTeamChange = this.handleTeamChange.bind(this);
         this.handleNumberChange = this.handleNumberChange.bind(this);
-        this.handleSearch = this.handleSearch.bind(this);
+        this.handleNumberSearch = this.handleNumberSearch.bind(this);
+        this.handleNameSearch = this.handleNameSearch.bind(this);
     }
 
     handleNameChange(e) {
@@ -45,20 +46,42 @@ class Filter extends React.Component {
         });
     }
 
-    handleSearch(){
-        if(this.state.number === "" && this.state.team === "" && this.state.name === ""){
-            alert("You need to insert at least one param to search");
+    handleNumberSearch(e){
+        e.preventDefault();
+        if(this.state.number === ""){
+            alert("You need to insert at least one number to search");
         }
         else if(this.state.number < 0 || this.state.number > 669){
             alert("The range of stickers in the album is (0-669)")
         }
         else{
+            let filter = "numFilter"
             let number = this.state.number;
             let team = this.state.team;
             let name = this.state.name;
             Session.set({limit: 9});
-            this.props.onFilter(name, team, number);
+            ReactDOM.findDOMNode(this.refs.searchNumberSubmit).value = "";
+            this.props.onFilter(name, team, number, filter);
 
+        }
+    }
+
+    handleNameSearch(e){
+        e.preventDefault();
+        if(this.state.name === ""){
+            alert("You need to insert at least one letter to search");
+        }
+        else if(this.state.number < 0 || this.state.number > 669){
+            alert("The range of stickers in the album is (0-669)")
+        }
+        else{
+            let filter = "nameFilter"
+            let number = this.state.number;
+            let team = this.state.team;
+            let name = this.state.name;
+            Session.set({limit: 9});
+            ReactDOM.findDOMNode(this.refs.searchPlayerSubmit).value = "";
+            this.props.onFilter(name, team, number, filter);
         }
     }
 
@@ -74,7 +97,7 @@ class Filter extends React.Component {
     render() {
         return (
             <div className="filterSelection">
-                <h2 id="filter-title">Filter:</h2>
+                <h2 id="filter-title">Search your missing stickers:</h2>
                 <br />
                 <div className="row">
                     <div className="col-md-1"></div>
@@ -82,11 +105,11 @@ class Filter extends React.Component {
                     <input type="submit" className="btn btn-danger btn-sm" value="Reset" onClick={this.handleReset} />
                         <br />
                         <br />
-                        <h5>Name:</h5>
+                        <h5>Player Name:</h5>
                         <div className="formFilter">
                             <form>
                                 <label>
-                                    <input list="players" name="players" placeholder="e.g. Neymar" onChange={this.handleNameChange}/>
+                                    <input list="players" name="players" ref="searchPlayerSubmit" placeholder="e.g. Neymar" onChange={this.handleNameChange}/>
                                     <datalist id="players">
                                         {
                                             this.props.names.map((name)=>(
@@ -95,7 +118,7 @@ class Filter extends React.Component {
                                         }
                                     </datalist>
                                 </label>
-                                <input type="submit" id="search-player-submit" className="btn btn-danger btn-sm" value="Search" onClick={this.handleSearch} />
+                                <input type="submit" id="searchPlayerSubmit" className="btn btn-danger btn-sm" value="Search" onClick={this.handleNameSearch} />
                             </form>
                         </div>
                     </div>
@@ -104,18 +127,18 @@ class Filter extends React.Component {
                 <div className="row">
                     <div className="col-md-1"></div>
                     <div className="col-md-10">
-                        <h5>Number:</h5>
+                        <h5>Sticker Number:</h5>
                         <div className="formFilter">
                             <form>
                                 <label>
-                                    <input list="numbers" name="number" placeholder="e.g. 153" onChange = {this.handleNumberChange}/>
+                                    <input list="numbers" name="number" ref="searchNumberSubmit" placeholder="e.g. 153" onChange = {this.handleNumberChange}/>
                                     <datalist id="numbers">
                                         {this.props.names.map((stickerInfo)=>(
                                             <option key = {"number" + stickerInfo.Num} value= {stickerInfo.Num}/>
                                         ))}
                                     </datalist> 
                                 </label>
-                                <input type="submit" id="search-number-submit" className="btn btn-danger btn-sm" value="Search" onClick={this.handleSearch} />
+                                <input type="submit" id="search-number-submit"  className="btn btn-danger btn-sm" value="Search" onClick={this.handleNumberSearch} />
                             </form>
                         </div>
                         <br />
