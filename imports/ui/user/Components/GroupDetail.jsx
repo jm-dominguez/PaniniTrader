@@ -39,11 +39,7 @@ class GroupDetail extends React.Component {
             let idGrupo = this.props.location.state.id;
             Meteor.call("peopleGroups.findById", idGrupo, (err, result) => {
 
-                let newMessages = result.messages;
-                newMessages.push(this.state.msg + "|"+ Meteor.userId() + "|"+ Meteor.user().profile.firstName + "|" + Meteor.user().profile.surname);
-
-
-                Meteor.call("peopleGroups.addMessage", idGrupo, result.user, result.name, result.detail, result.location, newMessages)
+            Meteor.call("peopleGroups.addMessage", idGrupo, result.user, result.name, result.detail, result.location, this.state.msg, result.messages)
             });
         }
     }

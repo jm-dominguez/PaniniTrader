@@ -14,13 +14,17 @@ if(Meteor.isServer){
 }
 
 Meteor.methods({
-    "peopleGroups.addMessage"(id,userP,nameP,detailP,locationP,messagesP){
+    "peopleGroups.addMessage"(id,userP,nameP,detailP,locationP, newMsg, messagesP){
         check(id, String);
         check(userP, [String]);
         check(nameP, String);
         check(detailP, String);
         check(locationP, String);
+        check(newMsg, String);
         check(messagesP, [String]);
+
+
+        messagesP.push( newMsg + "|"+ Meteor.userId() + "|"+ Meteor.user().profile.firstName + "|" + Meteor.user().profile.surname);
 
         PeopleGroups.remove(id);
 
