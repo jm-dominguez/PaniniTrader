@@ -41,6 +41,7 @@ export class Insert extends React.Component {
                 
             });
             Meteor.call("stadistics.findByNum", this.state.number, (err, result) => {
+                
                 let quantityUpdate = parseInt(result.quantity) + 1;
                 console.log("final:" + quantityUpdate);
                 Meteor.call("stadistics.updatesInfo", result._id, quantityUpdate, this.state.number);

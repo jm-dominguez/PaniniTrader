@@ -10,7 +10,9 @@ export class Sticker extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            modal: false
+            modal: false,
+            isMounted: false,
+            image: "http://xtremeproapparel.com/assets/images/comingsoon1.png"
         }
         this.handleRemoveClick = this.handleRemoveClick.bind(this);
         this.handleContactClick = this.handleContactClick.bind(this);
@@ -43,6 +45,44 @@ export class Sticker extends React.Component {
         this.setState({
             modal: false
         })
+    }
+
+    componentWillUnmount(){
+        this.setState({
+            isMounted : false
+        });
+        
+    }
+
+    componentWillMount(){
+        this.setState({
+            isMounted: true
+        });
+    }
+
+    componentDidMount(){
+
+
+        if(this.state.isMounted === true){
+            Meteor.call("names.findByNum", parseInt(this.props.number), (err, result) => {
+                let img = result.img;
+                if(img === undefined){     
+                    this.setState({
+                        image: "http://xtremeproapparel.com/assets/images/comingsoon1.png"
+                    });
+                    
+                }
+                else{
+                    
+                    this.setState({
+                        image: img
+                    });
+                    
+                }
+                
+            });
+
+        } 
     }
 
     handleContactClick() {
@@ -94,9 +134,7 @@ export class Sticker extends React.Component {
                     </div>
                     <div className="row" id="image-row">
                         <div className="col-sm-12">
-                            {
-                                this.props.image !== undefined ? <img src={this.props.image} alt="Player image" /> : <img src="http://xtremeproapparel.com/assets/images/comingsoon1.png" alt="Player image" />
-                            }
+                            <img src= {this.state.image} alt="Player image" />
                             
                         </div>
                     </div>
