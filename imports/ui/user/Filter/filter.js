@@ -148,6 +148,9 @@ class Filter extends React.Component {
 
                     </div>
                 </div>
+                <div className="row help-icon">
+                     <i class="material-icons">help</i>
+                </div>
             </div>
         );
     }

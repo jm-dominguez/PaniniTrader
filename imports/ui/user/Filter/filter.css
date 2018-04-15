@@ -26,3 +26,13 @@ input{
 h5{
     color: #2C3E50;
 }
+
+i{
+    color: #2C3E50;
+    text-align: center;
+    
+}
+
+.help-icon{
+    text-align: center;
+}
