@@ -53,7 +53,7 @@ class NavBarUser extends React.Component {
     render() {
         return (
             <div id="navigation">
-                <nav className="navbar navbar-expand-md navbar-dark fixed-top">
+                <nav className="navbar navbar-expand-md navbar-dark">
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
