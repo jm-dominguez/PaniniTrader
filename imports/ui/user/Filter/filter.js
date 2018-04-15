@@ -124,7 +124,7 @@ class Filter extends React.Component {
                     <input type="submit" className="btn btn-danger btn-sm" value="Reset" onClick={this.handleReset} />
                         <br />
                         <br />
-                        <label for="searchPlayerSubmit">Player Name:</label>
+                        <label htmlFor="searchPlayerSubmit">Player Name:</label>
                         <div className="formFilter">
                             <form>
                                 <label>
@@ -146,7 +146,7 @@ class Filter extends React.Component {
                 <div className="row">
                     <div className="col-md-1"></div>
                     <div className="col-md-10">
-                        <label for="searchNumberSubmit">Sticker Number:</label>
+                        <label htmlFor="searchNumberSubmit">Sticker Number:</label>
                         <div className="formFilter">
                             <form>
                                 <label>
@@ -173,25 +173,25 @@ class Filter extends React.Component {
                     </div>
                 </div>
                 <div className="modal fade" id="filterHelpModal" tabIndex="-1" role="dialog" aria-labelledby="Filter help Modal" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">Having Trouble ?</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div className="modal-body">
-                        {
-                            this.modalText()
-                        }
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Having Trouble ?</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            {
+                                this.modalText()
+                            }
 
-                        
+                            
+                        </div>
+                        <div className="modal-footer">
+                        </div>
+                        </div>
                     </div>
-                    <div className="modal-footer">
-                    </div>
-                    </div>
-                </div>
                 </div>
 
             </div>

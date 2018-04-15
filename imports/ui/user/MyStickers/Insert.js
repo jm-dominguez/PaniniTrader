@@ -37,11 +37,10 @@ export class Insert extends React.Component {
                 let pName = player.Name.slice(0, -3);
                 let pCountry = player.Country;
                 Meteor.call("stickers.insert", this.state.number, id, cellphone, pName, pCountry);
+                alert("Your sticker was succesfully added");
+                
             });
             Meteor.call("stadistics.findByNum", this.state.number, (err, result) => {
-                console.log(result);
-                console.log(result._id);
-                console.log(result.quantity);
                 let quantityUpdate = parseInt(result.quantity) + 1;
                 console.log("final:" + quantityUpdate);
                 Meteor.call("stadistics.updatesInfo", result._id, quantityUpdate, this.state.number);
@@ -67,12 +66,37 @@ export class Insert extends React.Component {
                             <form onSubmit={this.handleSubmit}>
                                 <label>
                                     Enter Sticker Number:
-                                    <input type="number" name="number" placeholder="Sticker Number" onChange={this.numberChange} />
+                                    <input type="number" name="number" placeholder="Sticker Number, e.g. 203" onChange={this.numberChange} />
                                 </label>
                                 <input type="submit" className="submit" value="Add" />
                             </form>
                         </div>
                     </div>
+                    <div className="row help-icon">
+                        <div className = "col-sm-10">
+                        </div>
+                        <div className = "col-sm-2">
+                            <i className="material-icons" data-toggle="modal" data-target="#addStickerHelp">help</i>
+                        </div>
+                    </div>
+                    <div className="modal fade" id="addStickerHelp" tabIndex="-1" role="dialog" aria-labelledby="Sticker help Modal" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Help for adding a Sticker</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            You've got a new repeated sticker? <br/>
+                            Just insert the number and click on the add button.
+                        </div>
+                        <div className="modal-footer">
+                        </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
         );
