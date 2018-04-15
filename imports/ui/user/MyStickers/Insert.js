@@ -28,7 +28,7 @@ export class Insert extends React.Component {
             alert("The range of stickers in the album is (0-669)")
         }
         else {
-            let id = Meteor.userId();
+            
             let cellphone = Meteor.user().profile.phone;
             //let player = Names.findOne({Num: parseInt(this.state.number)});
             Meteor.call("names.findByNum", parseInt(this.state.number), (err, result) => {
@@ -36,10 +36,11 @@ export class Insert extends React.Component {
                 let player = result;
                 let pName = player.Name.slice(0, -3);
                 let pCountry = player.Country;
-                Meteor.call("stickers.insert", this.state.number, id, cellphone, pName, pCountry);
+                Meteor.call("stickers.insert", this.state.number, cellphone, pName, pCountry);
                 alert("Your sticker was succesfully added");
                 
             });
+            /*
             Meteor.call("stadistics.findByNum", this.state.number, (err, result) => {
                 
                 let quantityUpdate = parseInt(result.quantity) + 1;
@@ -47,6 +48,9 @@ export class Insert extends React.Component {
                 Meteor.call("stadistics.updatesInfo", result._id, quantityUpdate, this.state.number);
 
             });
+            */
+
+            Session.set({status: "noFilter"});
 
 
         }

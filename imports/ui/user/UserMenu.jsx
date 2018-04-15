@@ -51,6 +51,9 @@ class UserMenu extends React.Component {
         if(e.currentTarget.textContent !== "None"){
             Session.set({order: e.currentTarget.textContent});
             Session.set({limit: 12});
+            this.setState({
+                order: ""
+            });
         }
         else{
             Session.set({order: undefined});
@@ -164,6 +167,11 @@ class UserMenu extends React.Component {
                                                 </DropdownItem>
                                                 <DropdownItem>
                                                     <div onClick = {this.handleOrder}>
+                                                        DateAdded
+                                                    </div>
+                                                </DropdownItem>
+                                                <DropdownItem>
+                                                    <div onClick = {this.handleOrder}>
                                                         None
                                                     </div>
                                                 </DropdownItem>
@@ -192,7 +200,9 @@ export default withRouter( withTracker(()=>{
         let pOrder = Session.get("order");
         let sortOrder = {};
         let status = Session.get("status");
-        
+        if(sortOrder.DateAdded === 1){
+            sortOrder[pOrder] = -1;
+        }
         sortOrder[pOrder] = 1;
         if(status === "noFilter"){
             return {

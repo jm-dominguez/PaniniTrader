@@ -24,8 +24,7 @@ export class MyStickers extends React.Component{
             order: "",
             dropdownOpen: false
         }
-        Session.keys = {}
-        Session.set({status: "noFilter", limit:12, order:undefined});
+        
 
         
         this.handleFilter = this.handleFilter.bind(this);
@@ -41,11 +40,14 @@ export class MyStickers extends React.Component{
 
     handleOrder(e){
         if(e.currentTarget.textContent !== "None"){
-            Session.set({order: e.currentTarget.textContent});
-            Session.set({limit: 12});
+            Session.set({Myorder: e.currentTarget.textContent});
+            Session.set({Mylimit: 12});
+            this.setState({
+                order: e.currentTarget.textContent
+            })
         }
         else{
-            Session.set({order: undefined});
+            Session.set({Myorder: undefined});
             this.setState({
                 order: ""
             });
@@ -54,7 +56,7 @@ export class MyStickers extends React.Component{
     }
 
     handleReset(){
-        Session.set({status: "noFilter"});
+        Session.set({Mystatus: "noFilter"});
         this.setState({
             filter: "noFilter",
             name: "",
@@ -63,20 +65,21 @@ export class MyStickers extends React.Component{
         });   
     }
 
+
     handleMore(){
-        let pLimit = Session.get("limit");
+        let pLimit = Session.get("Mylimit");
         if(!(this.props.stickers.length + 12 <= pLimit)){
             pLimit += 12;
             console.log("pLimit" + pLimit );
             console.log(this.props.stickers);
-            Session.set({limit:pLimit});
+            Session.set({Mylimit:pLimit});
         }
     }
 
     handleFilter(pname, pteam, pnumber, pfilter){
-        Session.set({name: pname});
-        Session.set({number: pnumber});
-        Session.set({status: pfilter});
+        Session.set({Myname: pname});
+        Session.set({Mynumber: pnumber});
+        Session.set({Mystatus: pfilter});
         this.setState({
             filter: pfilter,
             name: pname,
@@ -104,6 +107,10 @@ export class MyStickers extends React.Component{
 
     componentDidMount(){
         window.addEventListener("scroll", this.onScroll, false);
+    }
+
+    componentWillMount(){
+        Session.set({Mystatus: "noFilter", Mylimit:12, Myorder:undefined});
     }
 
     componentWillUnmount(){
@@ -155,6 +162,11 @@ export class MyStickers extends React.Component{
                                                 </DropdownItem>
                                                 <DropdownItem>
                                                     <div onClick = {this.handleOrder}>
+                                                        DateAdded
+                                                    </div>
+                                                </DropdownItem>
+                                                <DropdownItem>
+                                                    <div onClick = {this.handleOrder}>
                                                         None
                                                     </div>
                                                 </DropdownItem>
@@ -191,27 +203,30 @@ export default withRouter( withTracker(()=>{
     Meteor.subscribe("stickers");
         
         let userId = Meteor.userId();
-        let pLimit = Session.get("limit");
-        let pOrder = Session.get("order");
+        let pLimit = Session.get("Mylimit");
+        let pOrder = Session.get("Myorder");
         let sortOrder = {};
-        let status = Session.get("status");
+        let status = Session.get("Mystatus");
         
         sortOrder[pOrder] = 1;
+        if(sortOrder.DateAdded === 1){
+            sortOrder[pOrder] = -1;
+        }
         if(status === "noFilter"){
             return {
-            stickers: Stickers.find({owner:userId},{sort: sortOrder, limit: pLimit}).fetch().reverse(),
+            stickers: Stickers.find({owner:userId},{sort: sortOrder, limit: pLimit}).fetch(),
             
         };
         }
         else if(status === "numFilter"){
-            let pNumber = Session.get("number");
+            let pNumber = Session.get("Mynumber");
             return {
                 stickers: Stickers.find({owner: userId,number: pNumber},{sort: sortOrder, limit: pLimit}).fetch(),
                
             };
         }
         else if(status === "nameFilter"){
-            let pName = Session.get("name").slice(0, -3);
+            let pName = Session.get("Myname").slice(0, -3);
             return {
                 stickers: Stickers.find({owner:userId, name:{$regex:pName}},{sort: sortOrder, limit: pLimit}).fetch(),
                 
@@ -219,7 +234,7 @@ export default withRouter( withTracker(()=>{
         }
         else{
             return {
-                stickers: Stickers.find({owner:userId},{sort: sortOrder, limit: pLimit}).fetch().reverse(),
+                stickers: Stickers.find({owner:userId},{sort: sortOrder, limit: pLimit}).fetch(),
                 
             };
         }

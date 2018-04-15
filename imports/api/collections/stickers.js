@@ -17,21 +17,21 @@ Meteor.methods({
         Stickers.remove(id);
     },
 
-    "stickers.insert"(pnumber, powner, pphone, pname, pcountry){
+    "stickers.insert"(pnumber, pphone, pname, pcountry){
         
         check(pnumber, String);
-        check(powner, String);
         check(pphone, String);
         check(pname,String);
         check(pcountry, String);
-        
+
 
         Stickers.insert({
             number: pnumber,
-            owner: powner,
+            owner: this.userId,
             phone: pphone,
             name: pname,
-            country: pcountry
+            country: pcountry,
+            DateAdded: new Date(),
         });
     }
 });

@@ -76,7 +76,6 @@ class Filter extends React.Component {
             let number = this.state.number;
             let team = this.state.team;
             let name = this.state.name;
-            Session.set({limit: 9});
             ReactDOM.findDOMNode(this.refs.searchNumberSubmit).value = "";
             this.props.onFilter(name, team, number, filter);
 
