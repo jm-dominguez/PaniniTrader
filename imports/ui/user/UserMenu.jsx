@@ -193,7 +193,7 @@ class UserMenu extends React.Component {
 
 export default withRouter( withTracker(()=>{
 
-        Meteor.subscribe("stickers");
+        Meteor.subscribe("Otherstickers");
         Meteor.subscribe("stadistics");
         let userId = Meteor.userId();
         let pLimit = Session.get("limit");

@@ -7,6 +7,12 @@ if(Meteor.isServer){
     Meteor.publish("stickers", function stickerPublication(){
         return Stickers.find();
     });
+    Meteor.publish("Mystickers", function stickerPublication(){
+        return Stickers.find({owner:this.userId});
+    });
+    Meteor.publish("Otherstickers", function stickerPublication(){
+        return Stickers.find({owner:{$ne:this.userId}});
+    });
     
 }
 

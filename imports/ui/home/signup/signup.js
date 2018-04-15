@@ -94,7 +94,7 @@ class SignUp extends React.Component {
                     }
                 }, (err)=>{
                     if(err){
-                        return err;
+                        alert(err);
                     }
                     else{
                         alert("Account Succesfully Created");

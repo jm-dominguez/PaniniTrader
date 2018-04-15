@@ -200,7 +200,7 @@ export class MyStickers extends React.Component{
 }
 
 export default withRouter( withTracker(()=>{
-    Meteor.subscribe("stickers");
+    Meteor.subscribe("Mystickers");
         
         let userId = Meteor.userId();
         let pLimit = Session.get("Mylimit");
@@ -214,27 +214,27 @@ export default withRouter( withTracker(()=>{
         }
         if(status === "noFilter"){
             return {
-            stickers: Stickers.find({owner:userId},{sort: sortOrder, limit: pLimit}).fetch(),
+            stickers: Stickers.find({},{sort: sortOrder, limit: pLimit}).fetch(),
             
         };
         }
         else if(status === "numFilter"){
             let pNumber = Session.get("Mynumber");
             return {
-                stickers: Stickers.find({owner: userId,number: pNumber},{sort: sortOrder, limit: pLimit}).fetch(),
+                stickers: Stickers.find({number: pNumber},{sort: sortOrder, limit: pLimit}).fetch(),
                
             };
         }
         else if(status === "nameFilter"){
             let pName = Session.get("Myname").slice(0, -3);
             return {
-                stickers: Stickers.find({owner:userId, name:{$regex:pName}},{sort: sortOrder, limit: pLimit}).fetch(),
+                stickers: Stickers.find({name:{$regex:pName}},{sort: sortOrder, limit: pLimit}).fetch(),
                 
             };
         }
         else{
             return {
-                stickers: Stickers.find({owner:userId},{sort: sortOrder, limit: pLimit}).fetch(),
+                stickers: Stickers.find({},{sort: sortOrder, limit: pLimit}).fetch(),
                 
             };
         }
