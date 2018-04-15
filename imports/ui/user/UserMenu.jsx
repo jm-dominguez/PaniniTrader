@@ -113,55 +113,11 @@ class UserMenu extends React.Component {
     }
 
     renderSticker(){
-        if(this.state.filter === "noFilter"){
+        console.log(this.props);
             return this.props.stickers.map((sticker) =>(
                 <Sticker key={sticker._id} id={sticker._id} number={sticker.number} owner={sticker.owner} phone={sticker.phone} name={sticker.name} 
                 country={sticker.country} stadistics={this.props.stadistics}/>
             ));
-        }
-
-        else if(this.state.filter === "numFilter"){
-            if(this.state.number !== ""){
-                let array = [];
-                this.props.stickers.map((sticker)=>{
-                    if(sticker.number === this.state.number){
-                        array.push(sticker);
-                    }
-                });
-
-                return array.map((sticker) =>(
-                    <Sticker key={sticker._id} id={sticker._id} number={sticker.number} owner={sticker.owner} phone={sticker.phone} name={sticker.name} 
-                    country={sticker.country} stadistics={this.props.stadistics}/>
-                ));
-
-
-            }
-
-        }
-        else if(this.state.filter = "nameFilter"){
-            
-            if(this.state.name !== ""){
-                let players = Names.find({Name:{$regex: this.state.name} }).fetch();
-                
-                let numbers = [];
-                players.map((player)=>{
-                    numbers.push(player.Num);
-                });
-
-                let array = [];
-                this.props.stickers.map((sticker)=>{
-                    if(numbers.indexOf(parseInt(sticker.number)) >= 0){
-                        array.push(sticker);
-                    }
-                });
-
-                return array.map((sticker) =>(
-                    <Sticker key={sticker._id} id={sticker._id} number={sticker.number} owner={sticker.owner} phone={sticker.phone} name={sticker.name} 
-                    country={sticker.country} stadistics={this.props.stadistics}/>
-                ));
-
-            }
-        }
         
     }
 
@@ -175,7 +131,7 @@ class UserMenu extends React.Component {
                     <br />
                     <div className="row">
                         <div className="col-sm-4">
-                            <Filter onFilter={this.handleFilter} onReset={this.handleReset}/>
+                            <Filter onFilter={this.handleFilter} onReset={this.handleReset} status="other"/>
                         </div>
                         <div className="col-sm-8">
                             <div className="container-fluid">
@@ -252,7 +208,7 @@ export default withRouter( withTracker(()=>{
             };
         }
         else if(status === "nameFilter"){
-            let pName = Session.get("name");
+            let pName = Session.get("name").slice(0, -3);
             return {
                 stickers: Stickers.find({owner:{$ne:userId}, name:{$regex:pName}},{sort: sortOrder, limit: pLimit}).fetch(),
                 stadistics : Stadistics.find().fetch()

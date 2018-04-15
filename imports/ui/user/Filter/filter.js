@@ -97,7 +97,9 @@ class Filter extends React.Component {
     render() {
         return (
             <div className="filterSelection">
-                <h2 id="filter-title">Search your missing stickers:</h2>
+                {
+                    this.props.status === "My" ? <h2 id="filter-title">Search in your repeated stickers:</h2>: <h2 id="filter-title">Search your missing stickers:</h2>
+                }
                 <br />
                 <div className="row">
                     <div className="col-md-1"></div>

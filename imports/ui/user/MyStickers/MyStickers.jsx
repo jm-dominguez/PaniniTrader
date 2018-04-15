@@ -6,19 +6,44 @@ import {Sticker} from "../Components/Sticker.js";
 import {Stickers} from "../../../api/collections/stickers.js";
 import {Insert} from "./Insert.js";
 import { Stadistics } from "../../../api/collections/stadistics.js";
+import Filter from "../Filter/filter.js";
+import {Session} from "meteor/session";
+import "./MyStickers.css";
 
 export class MyStickers extends React.Component{
 
     constructor(props){
         super(props);
         Session.set({limit: 12});
+        Session.set({status: "noFilter"});
+        Session.set({order: undefined});
+        Session.set({limit: 12});
         this.onScroll = this.onScroll.bind(this);
+        this.handleMore = this.handleMore.bind(this);
+        this.handleFilter = this.handleFilter.bind(this);
+        this.handleReset = this.handleReset.bind(this);
+    }
+
+    handleReset(){
+        Session.set({status: "noFilter"});
+        this.setState({
+            filter: "noFilter",
+            name: "",
+            team: "",
+            number: ""
+        });   
     }
 
     handleMore(){
         let pLimit = Session.get("limit");
         pLimit += 12;
         Session.set({limit:pLimit});
+    }
+
+    handleFilter(pname, pteam, pnumber, pfilter){
+        Session.set({name: pname});
+        Session.set({number: pnumber});
+        Session.set({status: pfilter});
     }
 
     onScroll(){
@@ -70,8 +95,11 @@ export class MyStickers extends React.Component{
                                     <h2> Add repeated sticker </h2>
                                 </div>
                             </div>
-                            <div className="row">
+                            <div className="row" id="insert-row" >
                                 <Insert/>
+                            </div>
+                            <div className="row">
+                                <Filter onFilter={this.handleFilter} onReset={this.handleReset} status="My"/>
                             </div>
                         </div>
                     </div>
@@ -85,7 +113,33 @@ export default withTracker(()=>{
     Meteor.subscribe("stickers");
     let userId = Meteor.userId();
     let pLimit = Session.get("limit");
-    return {
-        stickers: Stickers.find({owner:userId}, {limit: pLimit}).fetch().reverse(),
-    };
+    let sortOrder = {};
+    let status = Session.get("status");
+    let pOrder = Session.get("order");
+        
+    sortOrder[pOrder] = 1;
+    if(status === "noFilter") {
+        return {
+            stickers: Stickers.find({owner:userId}, {limit: pLimit}).fetch().reverse(),
+        };
+    }
+    else if(status === "numFilter"){
+        let pNumber = Session.get("number");
+        return {
+            stickers: Stickers.find({owner:userId, number: pNumber},{sort: sortOrder, limit: pLimit}).fetch(),
+            stadistics : Stadistics.find().fetch()
+        };
+    }
+    else if(status === "nameFilter"){
+        let pName = Session.get("name").slice(0, -3);
+        return {
+            stickers: Stickers.find({owner:userId, name:{$regex:pName}},{sort: sortOrder, limit: pLimit}).fetch(),
+            stadistics : Stadistics.find().fetch()
+        };
+    }
+    else{
+        return {
+            stickers: Stickers.find({owner:userId}, {limit: pLimit}).fetch().reverse(),
+        };
+    }
 }) (MyStickers);
