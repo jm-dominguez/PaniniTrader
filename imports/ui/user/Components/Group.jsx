@@ -16,7 +16,6 @@ export class Group extends React.Component {
         console.log("mensajes")
         console.log(this.props)
         let userP = this.props.user;
-        userP.push(Meteor.userId());
         Meteor.call("peopleGroups.addMember", this.props.id, userP, this.props.name, this.props.detail, this.props.location, this.props.messages);
         //"peopleGroups.addMember"(id,userP,nameP,detailP,locationP,messagesP
         alert("Unido correctamente");
@@ -36,7 +35,7 @@ export class Group extends React.Component {
         if (esta === true) {
             return (
                 <Link to={{ pathname: "/menu/groupDetail", state: { detail: this.props.detail, id: this.props.id } }}>
-                    <input type="submit" className="btn btn-success btn-sm" value="See group" a />
+                    <input type="submit" className="btn btn-success btn-sm" value="See group"  />
                 </Link>
             )
         }
@@ -44,7 +43,7 @@ export class Group extends React.Component {
         else {
             return (
                 <Link to={{ pathname: "/menu/groupDetail", state: { detail: this.props.detail, id: this.props.id } }}>
-                    <input type="submit" className="btn btn-success btn-sm" value="Join group" a onClick={this.handleJoinGroup} />
+                    <input type="submit" className="btn btn-success btn-sm" value="Join group"  onClick={this.handleJoinGroup} />
                 </Link>
             )
         }

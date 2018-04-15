@@ -54,7 +54,6 @@ export default class NewGroup extends React.Component {
         else {
             let pMessages = [];
             let pUser = [];
-            pUser.push(Meteor.userId());
 
             Meteor.call("peopleGroups.addGroup", this.state.name, pUser, this.state.description, this.state.location, pMessages);
             //"peopleGroups.addGroup"(pName,pUser,pDetail,pLocation,pMessages)

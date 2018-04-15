@@ -69,8 +69,8 @@ class Groups extends React.Component {
 
 export default withTracker(() => {
     Meteor.subscribe("peopleGroups");
-    let userId = Meteor.userId();
+    
     return {
-        peopleGroups: PeopleGroups.find({ user: userId }).fetch(),
+        peopleGroups: PeopleGroups.find().fetch(),
     }
 })(Groups);

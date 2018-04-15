@@ -6,7 +6,10 @@ export const PeopleGroups = new Mongo.Collection("peopleGroups");
 
 if(Meteor.isServer){
     Meteor.publish("peopleGroups", function publishGroups(){
-        return PeopleGroups.find();
+        return PeopleGroups.find({ user: this.userId });
+    });
+    Meteor.publish("notMyPeopleGroups", function publishGroups(){
+        return PeopleGroups.find({ user: { $ne: this.userId } });
     });
 }
 
@@ -43,6 +46,8 @@ Meteor.methods({
         check(pLocation, String);
         check(pMessages, [String]);
 
+        pUser.push(Meteor.userId());
+
         PeopleGroups.insert({
             name : pName,
             user: pUser,
@@ -59,6 +64,8 @@ Meteor.methods({
         check(detailP, String);
         check(locationP, String);
         check(messagesP, [String]);
+
+        userP.push(Meteor.userId());
 
         PeopleGroups.remove(id);
 

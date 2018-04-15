@@ -47,9 +47,8 @@ class JoinGroup extends React.Component {
 
 
 export default withTracker(() => {
-    Meteor.subscribe("peopleGroups");
-    let userId = Meteor.userId();
+    Meteor.subscribe("notMyPeopleGroups");
     return {
-        peopleGroups: PeopleGroups.find({ user: { $ne: userId } }).fetch(),
+        peopleGroups: PeopleGroups.find({}).fetch(),
     }
 })(JoinGroup);
