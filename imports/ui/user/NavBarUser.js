@@ -6,10 +6,7 @@ import {Session} from "meteor/session";
 class NavBarUser extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-
-        }
-
+        
         this.handleLogOut = this.handleLogOut.bind(this);
         this.handleSearchClick = this.handleSearchClick.bind(this);
         this.handleStickersClick = this.handleStickersClick.bind(this);

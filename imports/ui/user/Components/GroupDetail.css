@@ -1,0 +1,13 @@
+#chat-container {
+    border-style: solid;
+    border-width: 4px;
+    border-color: #3498DB;
+    background-color: #f7f7f7;
+    width: 80%;
+    height: 500px;
+    overflow-y:auto;
+}
+
+input[type=submit] {
+    width: 110px !important;
+}

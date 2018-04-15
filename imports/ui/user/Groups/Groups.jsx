@@ -5,26 +5,33 @@ import { withTracker } from "meteor/react-meteor-data";
 import { PeopleGroups } from "../../../api/collections/peopleGroups.js";
 import { Group } from "../Components/Group.jsx";
 
-export class Groups extends React.Component {
+class Groups extends React.Component {
     constructor(props) {
         super(props);
+
+        this.handleCreateGroup = this.handleCreateGroup.bind(this);
+        this.handleJoinGroup = this.handleJoinGroup.bind(this);
     }
 
 
     renderGroup() {
+        console.log("History")
+        console.log(this.props)
         return (
             this.props.peopleGroups.map((g) =>
-                <Group key={g._id} user={g.user} name={g.name} detail={g.detail} location={g.location} />
+                <Group key={g._id} id={g._id} user={g.user} name={g.name} detail={g.detail} location={g.location} history={this.props.history} messages={g.messages}/>
             )
         );
     }
 
     handleCreateGroup() {
         console.log("Crear grupo");
+        this.props.history.push("/menu/NewGroup");
     }
 
     handleJoinGroup() {
         console.log("Unir grupo");
+        this.props.history.push("/menu/JoinGroup");
     }
 
     render() {

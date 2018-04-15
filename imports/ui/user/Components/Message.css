@@ -1,0 +1,19 @@
+.my-message{
+	background-color: #E74C3C;
+	margin: 0px;
+	margin-bottom: 7px;
+	padding: 10px;
+	float: right;
+	clear: both;
+	border-radius: 5px;
+}
+
+.other-message{
+	background-color: #3498DB;
+	margin: 0px;
+	margin-bottom: 7px;
+	padding: 10px;
+	float: left;
+	clear: both;
+	border-radius: 5px;
+}
