@@ -12,3 +12,13 @@ input{
     padding-left: 15px;
     border-radius: 3px;
 }
+
+#search-number-submit{
+    margin-left: 10px;
+    padding-bottom: 5px;
+}
+
+#search-player-submit{
+    margin-left: 10px;
+    padding-bottom: 5px;
+}

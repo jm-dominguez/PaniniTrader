@@ -95,6 +95,7 @@ class Filter extends React.Component {
                                         }
                                     </datalist>
                                 </label>
+                                <input type="submit" id="search-player-submit" className="btn btn-danger btn-sm" value="Search" onClick={this.handleSearch} />
                             </form>
                         </div>
                     </div>
@@ -114,10 +115,9 @@ class Filter extends React.Component {
                                         ))}
                                     </datalist> 
                                 </label>
+                                <input type="submit" id="search-number-submit" className="btn btn-danger btn-sm" value="Search" onClick={this.handleSearch} />
                             </form>
-
                         </div>
-                        <input type="submit" className="btn btn-danger btn-sm" value="Search" onClick={this.handleSearch} />
                         <br />
                         <br />
 
