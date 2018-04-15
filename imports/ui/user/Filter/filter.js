@@ -25,6 +25,23 @@ class Filter extends React.Component {
         this.handleNumberChange = this.handleNumberChange.bind(this);
         this.handleNumberSearch = this.handleNumberSearch.bind(this);
         this.handleNameSearch = this.handleNameSearch.bind(this);
+        this.modalText = this.modalText.bind(this);
+    }
+
+    modalText(){
+        if(this.props.status === "My"){
+            let text = " Have you traded your stickers? \n search them using the filter located in the right hand of the screen. Then remove them by using the remove button";
+            return text.split("\n").map((item, key)=>(
+                <span key = {key}> {item} <br/> </span> 
+            ))
+        }
+        else{
+            let text = " Having trouble? \n 1. Search for the stickers that your'e missing using the filter on the left hand of your screen \n 2. Click on the contact button below the sticker that you clicked \n 3. Communicate with the person that uploaded the sticker and offer a trade using WhatsApp";
+            return text.split("\n").map((item, key)=>(
+                <span key = {key}> {item} <br/> </span> 
+            ))
+
+        }
     }
 
     handleNameChange(e) {
@@ -107,11 +124,11 @@ class Filter extends React.Component {
                     <input type="submit" className="btn btn-danger btn-sm" value="Reset" onClick={this.handleReset} />
                         <br />
                         <br />
-                        <h5>Player Name:</h5>
+                        <label for="searchPlayerSubmit">Player Name:</label>
                         <div className="formFilter">
                             <form>
                                 <label>
-                                    <input list="players" name="players" ref="searchPlayerSubmit" placeholder="e.g. Neymar" onChange={this.handleNameChange}/>
+                                    <input id="searchPlayerSubmit" list="players" name="players" ref="searchPlayerSubmit" placeholder="e.g. Neymar" onChange={this.handleNameChange}/>
                                     <datalist id="players">
                                         {
                                             this.props.names.map((name)=>(
@@ -129,11 +146,11 @@ class Filter extends React.Component {
                 <div className="row">
                     <div className="col-md-1"></div>
                     <div className="col-md-10">
-                        <h5>Sticker Number:</h5>
+                        <label for="searchNumberSubmit">Sticker Number:</label>
                         <div className="formFilter">
                             <form>
                                 <label>
-                                    <input list="numbers" name="number" ref="searchNumberSubmit" placeholder="e.g. 153" onChange = {this.handleNumberChange}/>
+                                    <input id="searchNumberSubmit" list="numbers" name="number" ref="searchNumberSubmit" placeholder="e.g. 153" onChange = {this.handleNumberChange}/>
                                     <datalist id="numbers">
                                         {this.props.names.map((stickerInfo)=>(
                                             <option key = {"number" + stickerInfo.Num} value= {stickerInfo.Num}/>
@@ -149,9 +166,37 @@ class Filter extends React.Component {
                     </div>
                 </div>
                 <div className="row help-icon">
-                     <i class="material-icons">help</i>
+                    <div className = "col-sm-10">
+                    </div>
+                    <div className = "col-sm-2">
+                        <i className="material-icons" data-toggle="modal" data-target="#filterHelpModal">help</i>
+                    </div>
                 </div>
+                <div className="modal fade" id="filterHelpModal" tabIndex="-1" role="dialog" aria-labelledby="Filter help Modal" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">Having Trouble ?</h5>
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div className="modal-body">
+                        {
+                            this.modalText()
+                        }
+
+                        
+                    </div>
+                    <div className="modal-footer">
+                    </div>
+                    </div>
+                </div>
+                </div>
+
             </div>
+
+            
         );
     }
 }
