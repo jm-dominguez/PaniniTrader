@@ -158,8 +158,8 @@ export class Sticker extends React.Component {
                         Country: {this.props.country} <br/>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={this.handleRemoveClick}>Delete</Button>{' '}
-                        <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                        <Button color="secondary" onClick={this.handleRemoveClick}>Delete</Button>{' '}
+                        <Button color="primary" onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>

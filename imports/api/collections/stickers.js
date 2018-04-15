@@ -19,7 +19,11 @@ if(Meteor.isServer){
 Meteor.methods({
     "stickers.remove"(id){
         check(id, String);
-
+        let sticker = Stickers.findOne({_id: id});
+        if(sticker.owner !== this.userId){
+            throw new Meteor.Error('stickers.remove.unauthorize',
+            'You Don\'t have permissions to remove this sticker');
+        }
         Stickers.remove(id);
     },
 
