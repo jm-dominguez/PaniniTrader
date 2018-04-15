@@ -10,10 +10,12 @@ h2{
     text-align: center;
 }
 
-input[type=text], input[type=password], input[type=tel]{
-    width: 100%;
+input[type=text], input[type=password], input[type=tel], input[type=email]{
+    width:90%;
     margin: 8px 0;
     box-sizing: border-box;
+    padding-left: 15px;
+    border-radius: 3px;
 }
 
 .submit{
@@ -46,4 +48,9 @@ input[type=submit]{
 #signup-button-zone{
     justify-content: center;
     text-align: center;
+}
+
+.btn-success{
+    background-color: #3498DB;
+    border-color: #3498DB;
 }

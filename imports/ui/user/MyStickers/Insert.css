@@ -10,6 +10,7 @@ input[type=number]{
 
 .submit{
     cursor: pointer;
+    background-color: #E74C3C !important;
 }
 
 #add-container{
@@ -20,3 +21,4 @@ input[type=number]{
     background-color: white;
     text-align: center;
 }
+

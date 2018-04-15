@@ -52,7 +52,10 @@ export class Sticker extends React.Component {
             return (
                 <div>
                     <p>{q} </p>
-                    <button type="button" onClick={this.handleContactClick} className="btn btn-success btn-sm btn-block">Contact</button>
+                    <button type="button" onClick={this.handleContactClick} className="btn btn-success btn-sm btn-block">
+                        Contact
+                        <img className="WhatsAppLogo" alt="whatsapp logo" src="/images/wapp.png"/>
+                    </button>
                 </div>
             )
         }
@@ -61,7 +64,7 @@ export class Sticker extends React.Component {
     render() {
         return (
             <div>
-                <div className="container">
+                <div className="container" id="sticker-container">
                     <div className="row">
                         <div className="col-sm-12">
                             <p> {this.props.country} </p>
@@ -72,9 +75,12 @@ export class Sticker extends React.Component {
                             <p> {this.props.name} </p>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row" id="image-row">
                         <div className="col-sm-12">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/2000px-User_icon_2.svg.png" alt="Player image" />
+                            {
+                                this.props.image !== undefined ? <img src={this.props.image} alt="Player image" /> : <img src="http://xtremeproapparel.com/assets/images/comingsoon1.png" alt="Player image" />
+                            }
+                            
                         </div>
                     </div>
                     <div className="row">

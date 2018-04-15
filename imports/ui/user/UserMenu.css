@@ -8,10 +8,16 @@
 
 h1{
     font-family: 'Pacifico', cursive;
+    color: #2C3E50;
 }
 h2{
   margin: 10px;  
+  color: #2C3E50;
 }
 .dropdown-toggle{
     padding-left: 10px;
+}
+.btn-secondary{
+    background-color:  #E74C3C !important;
+    border-color:  #E74C3C !important;
 }

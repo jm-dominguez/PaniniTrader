@@ -24,6 +24,8 @@ class UserMenu extends React.Component {
             order: "",
             dropdownOpen: false
         }
+
+        Session.set({status: "noFilter"});
         
         Session.set({order: undefined});
         Session.set({limit: 12});
@@ -34,8 +36,10 @@ class UserMenu extends React.Component {
         this.onScroll = this.onScroll.bind(this);
         this.handleOrder = this.handleOrder.bind(this);
         this.toggle = this.toggle.bind(this);
+        this.handleFilter = this.handleFilter.bind(this);
         
     }
+
 
     toggle() {
         this.setState({
@@ -86,9 +90,12 @@ class UserMenu extends React.Component {
     componentWillUnmount(){
         window.removeEventListener("scroll", this.onScroll, false);
     }
-    handleFilter(pname, pteam, pnumber){
+    handleFilter(pname, pteam, pnumber, pfilter){
+        Session.set({name: pname});
+        Session.set({number: pnumber});
+        Session.set({status: pfilter});
         this.setState({
-            filter: "filter",
+            filter: pfilter,
             name: pname,
             team: pteam,
             number: pnumber
@@ -96,6 +103,7 @@ class UserMenu extends React.Component {
     }
 
     handleReset(){
+        Session.set({status: "noFilter"});
         this.setState({
             filter: "noFilter",
             name: "",
@@ -105,51 +113,11 @@ class UserMenu extends React.Component {
     }
 
     renderSticker(){
-        if(this.state.filter === "noFilter"){
+        console.log(this.props);
             return this.props.stickers.map((sticker) =>(
                 <Sticker key={sticker._id} id={sticker._id} number={sticker.number} owner={sticker.owner} phone={sticker.phone} name={sticker.name} 
                 country={sticker.country} stadistics={this.props.stadistics}/>
             ));
-        }
-        else{
-            if(this.state.number !== ""){
-                let array = [];
-                this.props.stickers.map((sticker)=>{
-                    if(sticker.number === this.state.number){
-                        array.push(sticker);
-                    }
-                });
-
-                return array.map((sticker) =>(
-                    <Sticker key={sticker._id} id={sticker._id} number={sticker.number} owner={sticker.owner} phone={sticker.phone} name={sticker.name} 
-                    country={sticker.country} stadistics={this.props.stadistics}/>
-                ));
-
-
-            }
-
-            else if(this.state.name !== ""){
-                let players = Names.find({Name:{$regex: this.state.name} }).fetch();
-                
-                let numbers = [];
-                players.map((player)=>{
-                    numbers.push(player.Num);
-                });
-
-                let array = [];
-                this.props.stickers.map((sticker)=>{
-                    if(numbers.indexOf(parseInt(sticker.number)) >= 0){
-                        array.push(sticker);
-                    }
-                });
-
-                return array.map((sticker) =>(
-                    <Sticker key={sticker._id} id={sticker._id} number={sticker.number} owner={sticker.owner} phone={sticker.phone} name={sticker.name} 
-                    country={sticker.country} stadistics={this.props.stadistics}/>
-                ));
-
-            }
-        }
         
     }
 
@@ -163,7 +131,7 @@ class UserMenu extends React.Component {
                     <br />
                     <div className="row">
                         <div className="col-sm-4">
-                            <Filter onFilter={this.handleFilter} onReset={this.handleReset}/>
+                            <Filter onFilter={this.handleFilter} onReset={this.handleReset} status="other"/>
                         </div>
                         <div className="col-sm-8">
                             <div className="container-fluid">
@@ -223,10 +191,34 @@ export default withRouter( withTracker(()=>{
         let pLimit = Session.get("limit");
         let pOrder = Session.get("order");
         let sortOrder = {};
+        let status = Session.get("status");
+        
         sortOrder[pOrder] = 1;
-        return {
+        if(status === "noFilter"){
+            return {
             stickers: Stickers.find({owner:{$ne:userId}},{sort: sortOrder, limit: pLimit}).fetch(),
             stadistics : Stadistics.find().fetch()
         };
+        }
+        else if(status === "numFilter"){
+            let pNumber = Session.get("number");
+            return {
+                stickers: Stickers.find({owner:{$ne:userId}, number: pNumber},{sort: sortOrder, limit: pLimit}).fetch(),
+                stadistics : Stadistics.find().fetch()
+            };
+        }
+        else if(status === "nameFilter"){
+            let pName = Session.get("name").slice(0, -3);
+            return {
+                stickers: Stickers.find({owner:{$ne:userId}, name:{$regex:pName}},{sort: sortOrder, limit: pLimit}).fetch(),
+                stadistics : Stadistics.find().fetch()
+            };
+        }
+        else{
+            return {
+                stickers: Stickers.find({owner:{$ne:userId}},{sort: sortOrder, limit: pLimit}).fetch(),
+                stadistics : Stadistics.find().fetch()
+            };
+        }
     
 }) (UserMenu));

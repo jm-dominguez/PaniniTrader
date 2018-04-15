@@ -5,3 +5,34 @@
 .filterSelection {
     border-style: groove;
 }
+
+input{
+    margin: 8px 0;
+    box-sizing: border-box;
+    padding-left: 15px;
+    border-radius: 3px;
+}
+
+#search-number-submit{
+    margin-left: 10px;
+    padding-bottom: 5px;
+}
+
+#search-player-submit{
+    margin-left: 10px;
+    padding-bottom: 5px;
+}
+
+h5{
+    color: #2C3E50;
+}
+
+i{
+    color: #2C3E50;
+    text-align: center;
+    
+}
+
+.help-icon{
+    text-align: center;
+}

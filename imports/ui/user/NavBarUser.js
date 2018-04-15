@@ -61,10 +61,10 @@ class NavBarUser extends React.Component {
                         <a className="navbar-brand" href="#">PaniniTrader</a>                        
                         <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link" onClick={this.handleStickersClick}>My Repeated Stickers</a>
+                                <a className="nav-link" onClick={this.handleSearchClick}>Search</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" onClick={this.handleSearchClick}>Search</a>
+                                <a className="nav-link" onClick={this.handleStickersClick}>My Repeated Stickers</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" onClick={this.handleGroupClick}>Groups</a>
