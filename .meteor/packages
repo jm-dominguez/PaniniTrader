@@ -24,3 +24,8 @@ email
 react-meteor-data
 session
 mdg:validated-method
+xolvio:cleaner
+digilord:faker
+practicalmeteor:mocha
+practicalmeteor:faker
+dburles:factory

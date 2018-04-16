@@ -6,6 +6,7 @@
 	float: right;
 	clear: both;
 	border-radius: 5px;
+	color :white;
 }
 
 .other-message{
@@ -16,4 +17,9 @@
 	float: left;
 	clear: both;
 	border-radius: 5px;
+	color :white;
+}
+
+.chatText {
+	color :white;
 }

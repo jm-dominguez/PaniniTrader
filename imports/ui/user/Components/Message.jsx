@@ -12,7 +12,7 @@ export class Message extends React.Component {
         if (Meteor.userId() === this.props.userId) {
             return (
                 <div className="my-message">
-                    <p> <strong> {this.props.userName} : </strong> {this.props.message}</p>
+                    <p className="chatText"> <strong> {this.props.userName} : </strong> {this.props.message}</p>
                 </div>
             )
         }
@@ -20,7 +20,7 @@ export class Message extends React.Component {
         else{
             return (
                 <div className="other-message">
-                    <p> <strong> {this.props.userName} : </strong> {this.props.message}</p>
+                    <p className="chatText"> <strong> {this.props.userName} : </strong> {this.props.message}</p>
                 </div>
             )
         }

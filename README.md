@@ -59,8 +59,19 @@ Now run meteor
 $ meteor
 ```
 
-The application should be running in localhost:3000
+The application should be running in localhost:3000.
 
+### Testing 
+
+Stop the ejectution. Now open the root terminal again.
+
+**Note:** If you are a Windows user, open it as Administrator.
+
+```
+$ meteor test --driver-package practicalmeteor:mocha --port 3100
+```
+
+The test results should be shown in localhost:3000.
 
 ## Built With
 
