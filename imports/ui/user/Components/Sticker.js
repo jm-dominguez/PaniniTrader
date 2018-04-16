@@ -12,7 +12,7 @@ export class Sticker extends React.Component {
         this.state = {
             modal: false,
             isMounted: false,
-            image: "http://xtremeproapparel.com/assets/images/comingsoon1.png"
+            image: ""
         }
         this.handleRemoveClick = this.handleRemoveClick.bind(this);
         this.handleContactClick = this.handleContactClick.bind(this);
@@ -68,7 +68,7 @@ export class Sticker extends React.Component {
                 let img = result.img;
                 if(img === undefined){     
                     this.setState({
-                        image: "http://xtremeproapparel.com/assets/images/comingsoon1.png"
+                        image: "/images/soon.png"
                     });
                     
                 }
