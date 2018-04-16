@@ -12,7 +12,7 @@ export class Sticker extends React.Component {
         this.state = {
             modal: false,
             isMounted: false,
-            image: "http://xtremeproapparel.com/assets/images/comingsoon1.png"
+            image: ""
         }
         this.handleRemoveClick = this.handleRemoveClick.bind(this);
         this.handleContactClick = this.handleContactClick.bind(this);
