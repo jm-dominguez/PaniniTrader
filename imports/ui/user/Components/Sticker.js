@@ -68,7 +68,7 @@ export class Sticker extends React.Component {
                 let img = result.img;
                 if(img === undefined){     
                     this.setState({
-                        image: "http://xtremeproapparel.com/assets/images/comingsoon1.png"
+                        image: "/images/soon.png"
                     });
                     
                 }
