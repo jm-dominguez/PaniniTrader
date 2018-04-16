@@ -76,7 +76,7 @@ class UserMenu extends React.Component {
 
     onScroll(){
         if (
-            (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 50) &&
+            (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 500) &&
             this.props.stickers.length &&
             !this.props.isLoading
           ) {
