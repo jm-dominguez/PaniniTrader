@@ -100,12 +100,7 @@ export class Sticker extends React.Component {
             return <button type="button" onClick={this.toggle} className="btn btn-danger btn-sm btn-block">Remove</button>
         }
         else {
-            let arreglo = this.props.stadistics;
-            let q = undefined;
-            if (arreglo[this.props.number] !== undefined){
-                q =  arreglo[this.props.number].quantity;
-            }
-
+            
             return (
                 <div>
                     <p>{q} </p>
