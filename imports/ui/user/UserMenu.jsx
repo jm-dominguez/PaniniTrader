@@ -182,6 +182,16 @@ class UserMenu extends React.Component {
                                 <div className="row">
                                     {this.renderSticker()}
                                 </div>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
                             </div>
                         </div>
                     </div>
