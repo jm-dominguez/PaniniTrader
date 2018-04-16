@@ -103,7 +103,7 @@ export class Sticker extends React.Component {
             
             return (
                 <div>
-                    <p>{q} </p>
+                    {/**<p>{q} </p> */}
                     <button type="button" onClick={this.handleContactClick} className="btn btn-success btn-sm btn-block">
                         Contact
                         <img className="WhatsAppLogo" alt="whatsapp logo" src="/images/wapp.png"/>
